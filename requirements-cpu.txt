@@ -1,0 +1,9 @@
+
+streamlit==1.40.2
+torch==2.5.1
+transformers==4.46.3
+huggingface-hub==0.26.2
+openai==1.54.4
+Pillow==11.0.0
+numpy==1.26.4
+requests==2.32.3

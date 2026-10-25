@@ -1,60 +1,43 @@
-## AI-Product-Catalogue-Intelligence
+# Social Media Caption Generation
+This project aims to generate a social media caption given an image. Leveraged a Vision Encoder Decoder Model to generate descriptive image captions the output of which were later fed to Chat-GPT (GPT 3.5 turbo backbone) with tuned prompts for final results.
 
-## Overview
+## Introduction
+This repo presents an end-to-end approach for providing an instagram like caption for a given input image. Code demo along with a working app has been provided in the further sections of this repository. 
 
-AI Product Catalogue Intelligence is a Python-based application designed to automate product information extraction and SEO content generation from product catalogue screenshots.
+The basic pipeline for the project goes like this - 
+- Extracting a descriptive representation for the input images in form of text
+- Passing the extracted text to Chat-GPT with tuned prompts for the final results.
 
-The application combines Optical Character Recognition (OCR), image analysis, web research, and locally run AI models to transform product listings into structured catalogue data.
+#### Image Caption Generation
+A Vision encoder decoder model has been used for extracting the descriptive captions for the input images. The full hugging face implementation for the code can been accessed from [here.](https://huggingface.co/docs/transformers/model_doc/vision-encoder-decoder)
 
-## Key Features
+#### Social Media Caption Conversion
+The output of the previous model is then fed to Chat-GPT for producing social media style captions. The repo also has options for generating hashtags, long captions or short ones with or wihout the emojis.
 
-- **Product Detection:** Identifies individual product cards from catalogue screenshots arranged in a grid.
-- **Text Extraction:** Uses Tesseract OCR to extract visible product names, pricing information, and other text.
-- **AI-Powered Product Identification:** Uses the locally running Moondream model through Ollama to interpret product images and identify product details.
-- **Web-Based Enrichment:** Searches for additional product information and extracts relevant content from webpages where available.
-- **SEO Keyword Generation:** Generates primary keywords, secondary keywords, long-tail keywords, and buyer search terms tailored to individual products.
-- **Catalogue Content Generation:** Produces product descriptions, listing titles, SEO titles, meta descriptions, attributes, and tags.
-- **Structured Output:** Organizes extracted information into a format suitable for catalogue review and export.
-- **Interactive Interface:** Uses Streamlit to provide a user-friendly interface for uploading screenshots and reviewing analysis results.
+## Sample Results
+The three sample test images that were given have been added for reference
+![here](https://github.com/IshanTiwari-030800/Social-media-caption-generation/blob/main/results.png)
 
-## Technology Stack
+## Installation and Quick Start
+To use the repo and run inferences, please follow the guidelines below
 
-| Technology | Purpose |
-|---|---|
-| Python | Core application logic |
-| Streamlit | Interactive web interface |
-| Tesseract OCR | Text extraction from product images |
-| Pillow | Image processing and product-card cropping |
-| Ollama | Local AI model execution |
-| Moondream | Visual product identification and AI-generated content |
-| Beautiful Soup | Webpage content extraction |
-| Requests | HTTP requests for product research |
-| DuckDuckGo Search | Online product information discovery |
-| Pandas | Tabular data handling and export |
+- Cloning the Repository: 
 
-## How It Works
+        $ git clone https://github.com/IshanTiwari-030800/Social-media-caption-generation
+        
+- Entering the directory: 
 
-1. **Upload:** The user uploads a screenshot containing multiple product listings.
-2. **Detect:** The image is divided into individual product cards based on the configured grid.
-3. **Extract:** OCR identifies the visible text within each product card.
-4. **Identify:** The local vision model helps identify the product name, brand, and category.
-5. **Research:** The application searches for additional product information online.
-6. **Generate:** AI produces structured catalogue content and product-specific SEO keyword suggestions.
-7. **Review and Export:** The results are presented in Streamlit for review and can be exported for further use.
+        $ cd Social-media-caption-generation/
+        
+- Setting up the Python Environment with dependencies:
 
-## Limitations
+        $ pip install virtualenv
+        $ virtualenv venv
+        $ source venv/bin/activate
+        $ pip install -r requirements.txt
+        
+- CLI Command
 
-- Product-card detection currently relies on a configured row-and-column grid.
-- OCR accuracy depends on image quality, text size, and screenshot resolution.
-- AI-generated descriptions and keywords may contain errors and require human review.
-- Online research depends on network connectivity and website accessibility.
-- Generated keywords are suggestions; actual search volume, keyword difficulty, and ranking performance are not measured.
-- Product prices, discounts, ingredients, and claims should be verified against reliable sources before publication.
+        $ python demo.py --image-file Image path --option (caption, hashtag) --caption_options (Long, short)
 
-## Project Status
-
-This project is a prototype exploring the application of local AI, OCR, web research, and SEO content generation to ecommerce catalogue workflows.
-
-<img width="959" height="454" alt="ss1" src="https://github.com/user-attachments/assets/9df1ef8f-c53d-4aa8-97bb-b40b6704bd07" />
-
-<img width="955" height="458" alt="ss2" src="https://github.com/user-attachments/assets/12544913-8070-43a1-89e6-ca86c6d304d9" />
+A Streamlit application for the same has been provided hosted in Google Colab. 

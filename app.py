@@ -368,8 +368,8 @@ if uploaded:
                     )
 
                 if item.get("ocr_text"):
-                    with st.expander("Extracted image text"):
-                        st.write(item["ocr_text"])
+                   st.markdown("**Extracted image text:**"):
+                   st.write(item["ocr_text"])
 
 else:
     st.info(

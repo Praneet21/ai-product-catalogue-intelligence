@@ -364,7 +364,11 @@ if uploaded:
                 if item.get("uncertain_details"):
                     st.warning(
                         "Review notes: "
-                        + "; ".join(item["uncertain_details"])
+                        + "; ".join(
+                            str(detail)
+                            for detail in item.get("uncertain_details", [])
+                            if detail is not None and str(detail).lower() != "nan"
+                        )
                     )
 
                 if item.get("ocr_text"):
